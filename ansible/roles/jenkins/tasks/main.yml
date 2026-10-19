@@ -1,0 +1,39 @@
+---
+- name: Install Java 21 and fontconfig
+  ansible.builtin.apt:
+    name:
+      - "{{ jenkins_java_package }}"
+      - "{{ jenkins_java_runtime }}"
+    state: present
+    update_cache: true
+
+- name: Add Jenkins LTS repository signing key
+  ansible.builtin.get_url:
+    url: "{{ jenkins_repo_key_url }}"
+    dest: /etc/apt/keyrings/jenkins.asc
+    owner: root
+    group: root
+    mode: "0644"
+
+- name: Configure Jenkins LTS repository
+  ansible.builtin.deb822_repository:
+    name: "{{ jenkins_repo_name }}"
+    types:
+      - deb
+    uris: "{{ jenkins_repo_url }}"
+    suites:
+      - binary/
+    signed_by: /etc/apt/keyrings/jenkins.asc
+    state: present
+
+- name: Install Jenkins
+  ansible.builtin.apt:
+    name: "{{ jenkins_package_name }}"
+    state: present
+    update_cache: true
+
+- name: Ensure Jenkins service is running and enabled
+  ansible.builtin.service:
+    name: "{{ jenkins_service_name }}"
+    state: started
+    enabled: true

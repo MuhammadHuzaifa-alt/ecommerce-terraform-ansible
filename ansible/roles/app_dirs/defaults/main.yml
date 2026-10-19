@@ -1,0 +1,6 @@
+---
+app_base_dir: "/opt/ecommerce"
+app_log_dir: "/var/log/ecommerce"
+app_directory_owner: "root"
+app_directory_group: "root"
+app_directory_mode: "0755"

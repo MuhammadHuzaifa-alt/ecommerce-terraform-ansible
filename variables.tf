@@ -41,3 +41,15 @@ variable "root_volume_size" {
   type        = number
   default     = 16
 }
+
+variable "jenkins_instance_type" {
+  description = "EC2 instance type for Jenkins server"
+  type        = string
+  default     = "t3.small"
+}
+
+variable "jenkins_root_volume_size" {
+  description = "Root volume size for Jenkins server in GiB"
+  type        = number
+  default     = 30
+}

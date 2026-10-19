@@ -1,0 +1,16 @@
+---
+- name: Ensure application directory exists
+  ansible.builtin.file:
+    path: "{{ app_base_dir }}"
+    state: directory
+    owner: "{{ app_directory_owner }}"
+    group: "{{ app_directory_group }}"
+    mode: "{{ app_directory_mode }}"
+
+- name: Ensure application log directory exists
+  ansible.builtin.file:
+    path: "{{ app_log_dir }}"
+    state: directory
+    owner: "{{ app_directory_owner }}"
+    group: "{{ app_directory_group }}"
+    mode: "{{ app_directory_mode }}"

@@ -44,3 +44,22 @@ resource "aws_security_group" "ecommerce" {
     create_before_destroy = true
   }
 }
+resource "aws_security_group" "jenkins" {
+  name        = "${var.project_name}-jenkins-sg"
+  description = "Security group for the Jenkins server"
+  vpc_id      = aws_vpc.ecommerce.id
+
+  egress {
+    description = "Allow outbound IPv4 traffic"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name    = "${var.project_name}-jenkins-sg"
+    Project = var.project_name
+    Role    = "jenkins"
+  }
+}

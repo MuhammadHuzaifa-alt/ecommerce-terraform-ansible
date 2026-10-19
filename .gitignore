@@ -37,3 +37,9 @@ terraform.rc
 *.p12
 *.pfx
 credentials
+# Ansible secrets and generated files
+.vault_pass
+vault_password
+vault_password.*
+*.vault
+*.retry

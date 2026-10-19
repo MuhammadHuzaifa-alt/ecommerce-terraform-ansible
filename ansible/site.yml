@@ -1,0 +1,9 @@
+---
+- name: Configure e-commerce server
+  hosts: ecommerce
+  gather_facts: true
+
+  roles:
+    - docker
+    - app_dirs
+    - nginx
